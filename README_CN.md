@@ -1,160 +1,162 @@
 KBEngine_unity3d_demo
 =============
 
-##±¾ÏîÄ¿×÷ÎªKBEngine·şÎñ¶ËÒıÇæµÄ¿Í»§¶ËÑİÊ¾¶øĞ´
+## æœ¬é¡¹ç›®ä½œä¸ºKBEngineæœåŠ¡ç«¯å¼•æ“çš„å®¢æˆ·ç«¯æ¼”ç¤ºè€Œå†™
+
 http://www.kbengine.org
 
-##¹Ù·½ÂÛÌ³
+## å®˜æ–¹è®ºå›
 
 	http://bbs.kbengine.org
 
 
-##QQ½»Á÷Èº
+## QQäº¤æµç¾¤
 
 	461368412
 
 
-##Releases
+## Releases
 
 	sources		: https://github.com/kbengine/kbengine_unity3d_demo/releases/latest
-	binarys		: https://sourceforge.net/projects/kbengine/files/
 
 
-##KBE²å¼şÎÄµµ
+## KBEæ’ä»¶æ–‡æ¡£
 
-	https://github.com/kbengine/kbengine_unity3d_plugins/blob/master/README.md
+	kbengine_unity3d_demo\Assets\Plugins\kbengine_unity3d_plugins\README.md
 
 
-##¿ªÊ¼:
-	1. È·±£ÒÑ¾­ÏÂÔØ¹ıKBEngine·şÎñ¶ËÒıÇæ£¬Èç¹ûÃ»ÓĞÏÂÔØÇëÏÈÏÂÔØ
-		ÏÂÔØ·şÎñ¶ËÔ´Âë(KBEngine)£º
+## å¼€å§‹:
+	1. ç¡®ä¿å·²ç»ä¸‹è½½è¿‡KBEngineæœåŠ¡ç«¯å¼•æ“ï¼Œå¦‚æœæ²¡æœ‰ä¸‹è½½è¯·å…ˆä¸‹è½½
+		ä¸‹è½½æœåŠ¡ç«¯æºç (KBEngine)ï¼š
 			https://github.com/kbengine/kbengine/releases/latest
 
-		±àÒë(KBEngine)£º
+		ç¼–è¯‘(KBEngine)ï¼š
 			http://www.kbengine.org/docs/build.html
 
-		°²×°(KBEngine)£º
+		å®‰è£…(KBEngine)ï¼š
 			http://www.kbengine.org/docs/installation.html
 
-	2. ÏÂÔØkbengine¿Í»§¶Ë²å¼şÓë·şÎñ¶ËDemo×Ê²ú¿â:
+	2. ä¸‹è½½æœåŠ¡ç«¯Demoèµ„äº§åº“:
 
-	    * Ê¹ÓÃgitÃüÁîĞĞ£¬½øÈëµ½kbengine_unity3d_demoÄ¿Â¼Ö´ĞĞ£º
+	    * ä½¿ç”¨gitå‘½ä»¤è¡Œï¼Œè¿›å…¥åˆ°kbengine_unity3d_demoç›®å½•æ‰§è¡Œï¼š
 
 	        git submodule update --init --remote
 ![submodule_update1](http://www.kbengine.org/assets/img/screenshots/gitbash_submodule.png)
 
-		* »òÕßÊ¹ÓÃ TortoiseGit(Ñ¡Ôñ²Ëµ¥): TortoiseGit -> Submodule Update:
+		* æˆ–è€…ä½¿ç”¨ TortoiseGit(é€‰æ‹©èœå•): TortoiseGit -> Submodule Update:
 ![submodule_update2](http://www.kbengine.org/assets/img/screenshots/unity3d_plugins_submodule_update.jpg)
 
-                * Ò²¿ÉÒÔÊÖ¶¯ÏÂÔØkbengine¿Í»§¶Ë²å¼şÓë·şÎñ¶ËDemo×Ê²ú¿â
+                * ä¹Ÿå¯ä»¥æ‰‹åŠ¨ä¸‹è½½æœåŠ¡ç«¯Demoèµ„äº§åº“
 
-		        ¿Í»§¶Ë²å¼şÏÂÔØ£º
-		            https://github.com/kbengine/kbengine_unity3d_plugins/releases/latest
-		            ÏÂÔØºóÇë½«Æä½âÑ¹Ëõ£¬²å¼şÔ´ÂëÇë·ÅÖÃÔÚ: Assets/plugins/kbengine/kbengine_unity3d_plugins
-
-		        ·şÎñ¶Ë×Ê²ú¿âÏÂÔØ£º
+		        æœåŠ¡ç«¯èµ„äº§åº“ä¸‹è½½ï¼š
 		            https://github.com/kbengine/kbengine_demos_assets/releases/latest
-		            ÏÂÔØºóÇë½«Æä½âÑ¹Ëõ,²¢½«Ä¿Â¼ÎÄ¼ş·ÅÖÃÓÚ·şÎñ¶ËÒıÇæ¸ùÄ¿Â¼"kbengine/"Ö®ÏÂ£¬ÈçÏÂÍ¼£º
+		            ä¸‹è½½åè¯·å°†å…¶è§£å‹ç¼©,å¹¶å°†ç›®å½•æ–‡ä»¶æ”¾ç½®äºæœåŠ¡ç«¯å¼•æ“æ ¹ç›®å½•"kbengine/"ä¹‹ä¸‹ï¼Œå¦‚ä¸‹å›¾ï¼š
 
-	3. ¿½±´·şÎñ¶Ë×Ê²ú¿â"kbengine_demos_assets"µ½·şÎñ¶ËÒıÇæ¸ùÄ¿Â¼"kbengine/"Ö®ÏÂ£¬ÈçÏÂÍ¼£º
+	3. æ‹·è´æœåŠ¡ç«¯èµ„äº§åº“"kbengine_demos_assets"åˆ°æœåŠ¡ç«¯å¼•æ“æ ¹ç›®å½•"kbengine/"ä¹‹ä¸‹ï¼Œå¦‚ä¸‹å›¾ï¼š
 ![demo_configure](http://www.kbengine.org/assets/img/screenshots/demo_copy_kbengine.jpg)
 
 
-##ÅäÖÃDemo(¿ÉÑ¡):
+	4. é€šè¿‡æœåŠ¡ç«¯èµ„äº§åº“ç”ŸæˆKBEå®¢æˆ·ç«¯æ’ä»¶ï¼ˆå¯é€‰ï¼Œé»˜è®¤å·²ç»å¸¦æœ‰ä¸€ä»½ï¼Œé™¤éæœåŠ¡å™¨æœ‰ç›¸å…³æ”¹åŠ¨æ‰éœ€è¦å†æ¬¡ç”Ÿæˆï¼‰
+		1: åŒå‡»è¿è¡Œ kbengine/kbengine_demos_asset/gensdk.bat
+		2: æ‹·è´kbengine_unity3d_pluginsåˆ°kbengine_unity3d_demo\Assets\Plugins\
 
-	¸Ä±äµÇÂ¼IPµØÖ·Óë¶Ë¿Ú£¨×¢Òâ£º¹ØÓÚ·şÎñ¶Ë¶Ë¿Ú²¿·Ö²Î¿´http://www.kbengine.org/cn/docs/installation.html£©:
+
+## é…ç½®Demo(å¯é€‰):
+
+	æ”¹å˜ç™»å½•IPåœ°å€ä¸ç«¯å£ï¼ˆæ³¨æ„ï¼šå…³äºæœåŠ¡ç«¯ç«¯å£éƒ¨åˆ†å‚çœ‹http://www.kbengine.org/cn/docs/installation.htmlï¼‰:
 ![demo_configure](http://www.kbengine.org/assets/img/screenshots/demo_configure.jpg)
 
 		kbengine_unity3d_demo\Scripts\kbe_scripts\clientapp.cs -> ip
 		kbengine_unity3d_demo\Scripts\kbe_scripts\clientapp.cs -> port
 
 
-##Æô¶¯·şÎñÆ÷:
+## å¯åŠ¨æœåŠ¡å™¨:
 
-	È·±£¡°kbengine_unity3d_demo\kbengine_demos_assets¡±ÒÑ¾­¿½±´µ½KBEngine¸ùÄ¿Â¼£º
-		²Î¿¼ÉÏ·½ÕÂ½Ú£º¿ªÊ¼
+	ç¡®ä¿â€œkbengine_unity3d_demo\kbengine_demos_assetsâ€å·²ç»æ‹·è´åˆ°KBEngineæ ¹ç›®å½•ï¼š
+		å‚è€ƒä¸Šæ–¹ç« èŠ‚ï¼šå¼€å§‹
 
-	Ê¹ÓÃÆô¶¯½Å±¾Æô¶¯·şÎñ¶Ë£º
+	ä½¿ç”¨å¯åŠ¨è„šæœ¬å¯åŠ¨æœåŠ¡ç«¯ï¼š
 		Windows:
 			kbengine\kbengine_demos_assets\start_server.bat
 
 		Linux:
 			kbengine\kbengine_demos_assets\start_server.sh
 
-	¼ì²éÆô¶¯×´Ì¬£º
-			Èç¹ûÆô¶¯³É¹¦½«»áÔÚÈÕÖ¾ÖĞÕÒµ½"Components::process(): Found all the components!"¡£
-			ÈÎºÎÆäËûÇé¿öÇëÔÚÈÕÖ¾ÖĞËÑË÷"ERROR"¹Ø¼ü×Ö£¬¸ù¾İ´íÎóÃèÊö³¢ÊÔ½â¾ö¡£
-			(¸ü¶à²Î¿¼: http://www.kbengine.org/docs/startup_shutdown.html)
+	æ£€æŸ¥å¯åŠ¨çŠ¶æ€ï¼š
+			å¦‚æœå¯åŠ¨æˆåŠŸå°†ä¼šåœ¨æ—¥å¿—ä¸­æ‰¾åˆ°"Components::process(): Found all the components!"ã€‚
+			ä»»ä½•å…¶ä»–æƒ…å†µè¯·åœ¨æ—¥å¿—ä¸­æœç´¢"ERROR"å…³é”®å­—ï¼Œæ ¹æ®é”™è¯¯æè¿°å°è¯•è§£å†³ã€‚
+			(æ›´å¤šå‚è€ƒ: http://www.kbengine.org/docs/startup_shutdown.html)
 
 
-##Æô¶¯¿Í»§¶Ë:
+## å¯åŠ¨å®¢æˆ·ç«¯:
 
-	Ö±½ÓÔÚUnity3D±à¼­Æ÷Æô¶¯»òÕß±àÒëºóÆô¶¯
-	£¨±àÒë¿Í»§¶Ë£ºUnity Editor -> File -> Build Settings -> PC, MAC & Linux Standalone.£©
+	ç›´æ¥åœ¨Unity3Dç¼–è¾‘å™¨å¯åŠ¨æˆ–è€…ç¼–è¯‘åå¯åŠ¨
+	ï¼ˆç¼–è¯‘å®¢æˆ·ç«¯ï¼šUnity Editor -> File -> Build Settings -> PC, MAC & Linux Standalone.ï¼‰
 
 
-##Éú³Éµ¼º½Íø¸ñ(¿ÉÑ¡):
+## ç”Ÿæˆå¯¼èˆªç½‘æ ¼(å¯é€‰):
 	
-	·şÎñ¶ËÊ¹ÓÃRecastnavigationÔÚ3DÊÀ½çÑ°Â·£¬recastnavigationÉú³ÉµÄµ¼º½Íø¸ñ£¨Navmeshs£©·ÅÖÃÓÚ£º
+	æœåŠ¡ç«¯ä½¿ç”¨Recastnavigationåœ¨3Dä¸–ç•Œå¯»è·¯ï¼Œrecastnavigationç”Ÿæˆçš„å¯¼èˆªç½‘æ ¼ï¼ˆNavmeshsï¼‰æ”¾ç½®äºï¼š
 		kbengine\kbengine_demos_assets\res\spaces\*
 
-	ÔÚUnity3DÖĞÊ¹ÓÃ²å¼şÉú³Éµ¼º½Íø¸ñ£¨Navmeshs£©:
+	åœ¨Unity3Dä¸­ä½¿ç”¨æ’ä»¶ç”Ÿæˆå¯¼èˆªç½‘æ ¼ï¼ˆNavmeshsï¼‰:
 		https://github.com/kbengine/unity3d_nav_critterai
 
 
-##½á¹¹ÓëÊÍÒå£º
+## ç»“æ„ä¸é‡Šä¹‰ï¼š
 
-	KBE²å¼şÓëU3DºÍ·şÎñÆ÷Ö®¼äµÄ¹ØÏµ£º
-		²å¼şÓë·şÎñÆ÷£º¸ºÔğ´¦ÀíÓë·şÎñ¶ËÖ®¼äµÄÍøÂçÏûÏ¢°ü¡¢ÕËºÅµÇÂ½/µÇ³öÁ÷³Ì¡¢ÓÉ·şÎñ¶ËÍ¨Öª´´½¨ºÍÏú»ÙÂß¼­ÊµÌå¡¢Î¬»¤Í¬²½µÄÂß¼­ÊµÌåÊôĞÔÊı¾İµÈµÈ¡£
-		²å¼şÓëU3D£º²å¼ş½«Ä³Ğ©ÊÂ¼ş´¥·¢¸øU3DÍ¼ĞÎ²ã£¬Í¼ĞÎ²ã¾ö¶¨ÊÇ·ñĞèÒª²¶»ñÄ³Ğ©ÊÂ¼ş»ñµÃÊı¾İ½øĞĞäÖÈ¾±íÏÖ£¨ÀıÈç£º´´½¨¹ÖÎï¡¢Ä³¸öNPCµÄÒÆ¶¯ËÙ¶ÈÔö¼Ó¡¢HP±ä»¯£©¡¢
-			U3DÍ¼ĞÎ²ã½«ÊäÈëÊÂ¼ş´¥·¢µ½²å¼ş²ã£¨ÀıÈç£ºÍæ¼ÒÒÆ¶¯ÁË¡¢µã»÷ÁË¸´»î°´Å¥UI£©£¬²å¼şÂß¼­½Å±¾²ã¾ö¶¨ÊÇ·ñĞèÒªÖĞ×ªµ½·şÎñÆ÷µÈµÈ¡£
+	KBEæ’ä»¶ä¸U3Då’ŒæœåŠ¡å™¨ä¹‹é—´çš„å…³ç³»ï¼š
+		æ’ä»¶ä¸æœåŠ¡å™¨ï¼šè´Ÿè´£å¤„ç†ä¸æœåŠ¡ç«¯ä¹‹é—´çš„ç½‘ç»œæ¶ˆæ¯åŒ…ã€è´¦å·ç™»é™†/ç™»å‡ºæµç¨‹ã€ç”±æœåŠ¡ç«¯é€šçŸ¥åˆ›å»ºå’Œé”€æ¯é€»è¾‘å®ä½“ã€ç»´æŠ¤åŒæ­¥çš„é€»è¾‘å®ä½“å±æ€§æ•°æ®ç­‰ç­‰ã€‚
+		æ’ä»¶ä¸U3Dï¼šæ’ä»¶å°†æŸäº›äº‹ä»¶è§¦å‘ç»™U3Då›¾å½¢å±‚ï¼Œå›¾å½¢å±‚å†³å®šæ˜¯å¦éœ€è¦æ•è·æŸäº›äº‹ä»¶è·å¾—æ•°æ®è¿›è¡Œæ¸²æŸ“è¡¨ç°ï¼ˆä¾‹å¦‚ï¼šåˆ›å»ºæ€ªç‰©ã€æŸä¸ªNPCçš„ç§»åŠ¨é€Ÿåº¦å¢åŠ ã€HPå˜åŒ–ï¼‰ã€
+			U3Då›¾å½¢å±‚å°†è¾“å…¥äº‹ä»¶è§¦å‘åˆ°æ’ä»¶å±‚ï¼ˆä¾‹å¦‚ï¼šç©å®¶ç§»åŠ¨äº†ã€ç‚¹å‡»äº†å¤æ´»æŒ‰é’®UIï¼‰ï¼Œæ’ä»¶é€»è¾‘è„šæœ¬å±‚å†³å®šæ˜¯å¦éœ€è¦ä¸­è½¬åˆ°æœåŠ¡å™¨ç­‰ç­‰ã€‚
 
-	Plugins\kbengine\kbengine_unity3d_plugins£º
-		KBE¿Í»§¶Ë²å¼şµÄºËĞÄ²ã´úÂë¡£
+	Plugins\kbengine\kbengine_unity3d_pluginsï¼š
+		KBEå®¢æˆ·ç«¯æ’ä»¶çš„æ ¸å¿ƒå±‚ä»£ç ã€‚
 
-	Scripts\kbe_scripts£º
-		KBE¿Í»§¶ËµÄÂß¼­½Å±¾£¨ÔÚ´ËÊµÏÖ¶ÔÓ¦·şÎñ¶ËµÄÊµÌå½Å±¾¡¢ÊµÌåµÄ±³°üÊı¾İ½á¹¹¡¢¼¼ÄÜ¿Í»§¶ËÅĞ¶ÏµÈ£©¡£
+	Scripts\kbe_scriptsï¼š
+		KBEå®¢æˆ·ç«¯çš„é€»è¾‘è„šæœ¬ï¼ˆåœ¨æ­¤å®ç°å¯¹åº”æœåŠ¡ç«¯çš„å®ä½“è„šæœ¬ã€å®ä½“çš„èƒŒåŒ…æ•°æ®ç»“æ„ã€æŠ€èƒ½å®¢æˆ·ç«¯åˆ¤æ–­ç­‰ï¼‰ã€‚
 
-		Scripts\kbe_scripts\Account.cs£º
-			¶ÔÓ¦KBE·şÎñ¶ËµÄÕËºÅÊµÌåµÄ¿Í»§¶Ë²¿·Ö¡£
+		Scripts\kbe_scripts\Account.csï¼š
+			å¯¹åº”KBEæœåŠ¡ç«¯çš„è´¦å·å®ä½“çš„å®¢æˆ·ç«¯éƒ¨åˆ†ã€‚
 
-		Scripts\kbe_scripts\Avatar.cs£º
-			¶ÔÓ¦KBE·şÎñ¶ËµÄÕËÓÎÏ·ÖĞÍæ¼ÒÊµÌåµÄ¿Í»§¶Ë²¿·Ö¡£
+		Scripts\kbe_scripts\Avatar.csï¼š
+			å¯¹åº”KBEæœåŠ¡ç«¯çš„è´¦æ¸¸æˆä¸­ç©å®¶å®ä½“çš„å®¢æˆ·ç«¯éƒ¨åˆ†ã€‚
 
-		Scripts\kbe_scripts\Monster.cs£º
-			¶ÔÓ¦KBE·şÎñ¶ËµÄ¹ÖÎïÊµÌåµÄ¿Í»§¶Ë²¿·Ö¡£
+		Scripts\kbe_scripts\Monster.csï¼š
+			å¯¹åº”KBEæœåŠ¡ç«¯çš„æ€ªç‰©å®ä½“çš„å®¢æˆ·ç«¯éƒ¨åˆ†ã€‚
 
-		Scripts\kbe_scripts\clientapp.cs£º
-			ÔÚKBEµÄÌåÏµÖĞ³éÏó³öÒ»¸ö¿Í»§¶ËAPP£¬ÆäÖĞ°üº¬KBE¿Í»§¶Ë²å¼şµÄ³õÊ¼»¯ºÍÏú»ÙµÈµÈ¡£
+		Scripts\kbe_scripts\clientapp.csï¼š
+			åœ¨KBEçš„ä½“ç³»ä¸­æŠ½è±¡å‡ºä¸€ä¸ªå®¢æˆ·ç«¯APPï¼Œå…¶ä¸­åŒ…å«KBEå®¢æˆ·ç«¯æ’ä»¶çš„åˆå§‹åŒ–å’Œé”€æ¯ç­‰ç­‰ã€‚
 
-		Scripts\kbe_scripts\interfaces£º
-			¶ÔÓ¦KBEÖĞentity_defs\interfacesÖĞËùÉùÃ÷µÄÄ£¿é¡£
+		Scripts\kbe_scripts\interfacesï¼š
+			å¯¹åº”KBEä¸­entity_defs\interfacesä¸­æ‰€å£°æ˜çš„æ¨¡å—ã€‚
 
-	Scripts\u3d_scripts£º
-		Unity3DÍ¼ĞÎ²ã£¨°üÀ¨³¡¾°äÖÈ¾¡¢UI¡¢ÎïÌå²¿¼ş¡¢ÈËÎïÄ£ĞÍ¡¢¹ÖÎïÄ£ĞÍ¡¢Ò»ÇĞ¹ØÓÚÏÔÊ¾µÄ¶«Î÷µÈµÈ£©¡£
+	Scripts\u3d_scriptsï¼š
+		Unity3Då›¾å½¢å±‚ï¼ˆåŒ…æ‹¬åœºæ™¯æ¸²æŸ“ã€UIã€ç‰©ä½“éƒ¨ä»¶ã€äººç‰©æ¨¡å‹ã€æ€ªç‰©æ¨¡å‹ã€ä¸€åˆ‡å…³äºæ˜¾ç¤ºçš„ä¸œè¥¿ç­‰ç­‰ï¼‰ã€‚
 
-		Scripts\u3d_scripts\GameEntity.cs£º
-			ÎŞÂÛÊÇ¹ÖÎï»¹ÊÇÍæ¼Ò¶¼ÓÉ´Ë½Å±¾¸ºÔğÄ£ĞÍ¶¯»­µÈ±íÏÖ²¿·Ö¡£
+		Scripts\u3d_scripts\GameEntity.csï¼š
+			æ— è®ºæ˜¯æ€ªç‰©è¿˜æ˜¯ç©å®¶éƒ½ç”±æ­¤è„šæœ¬è´Ÿè´£æ¨¡å‹åŠ¨ç”»ç­‰è¡¨ç°éƒ¨åˆ†ã€‚
 
 		Scripts\u3d_scripts\World.cs:
-			¹ÜÀíÓÎÏ·ÖĞ´óµØÍ¼»ò¸±±¾µÄäÖÈ¾²ã½Å±¾£¬ÀıÈç£º¸ºÔğ½«¾ßÌåµÄ3D¹ÖÎï´´½¨µ½³¡¾°ÖĞ¡£
+			ç®¡ç†æ¸¸æˆä¸­å¤§åœ°å›¾æˆ–å‰¯æœ¬çš„æ¸²æŸ“å±‚è„šæœ¬ï¼Œä¾‹å¦‚ï¼šè´Ÿè´£å°†å…·ä½“çš„3Dæ€ªç‰©åˆ›å»ºåˆ°åœºæ™¯ä¸­ã€‚
 
 		Scripts\u3d_scripts\UI.cs:
-			Î¬»¤ÓÎÏ·µÄUI´¦Àí½Å±¾¡£
+			ç»´æŠ¤æ¸¸æˆçš„UIå¤„ç†è„šæœ¬ã€‚
 
-	Scenes\start.unity:
-		ÆğÊ¼³¡¾°£¬ÓÉ´ËÆô¶¯½øÈëÓÎÏ·¡£
+	start.unity:
+		èµ·å§‹åœºæ™¯ï¼Œç”±æ­¤å¯åŠ¨è¿›å…¥æ¸¸æˆã€‚
 
-	Scenes\_scenes\login.unity:
-		µÇÂ½³¡¾°¡£
+	Scenes\login.unity:
+		ç™»é™†åœºæ™¯ã€‚
 
-	Scenes\_scenes\selavatars.unity:
-		½ÇÉ«Ñ¡È¡³¡¾°¡£
+	Scenes\selavatars.unity:
+		è§’è‰²é€‰å–åœºæ™¯ã€‚
 
-	Scenes\_scenes\world.unity:
-		ÓÎÏ·ÖĞ´óµØÍ¼/¸±±¾³¡¾°¡£
+	Scenes\world.unity:
+		æ¸¸æˆä¸­å¤§åœ°å›¾/å‰¯æœ¬åœºæ™¯ã€‚
 
-##ÑİÊ¾½ØÍ¼:
+## æ¼”ç¤ºæˆªå›¾:
+
 ![screenshots1](http://www.kbengine.org/assets/img/screenshots/unity3d_demo9.jpg)
 ![screenshots2](http://www.kbengine.org/assets/img/screenshots/unity3d_demo10.jpg)
 ![screenshots3](http://www.kbengine.org/assets/img/screenshots/unity3d_demo11.jpg)

@@ -5,6 +5,7 @@ using System.IO;
 using System.Collections; 
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour 
 {
@@ -16,13 +17,15 @@ public class UI : MonoBehaviour
 	private string labelMsg = "";
 	private Color labelColor = Color.green;
 	
-	private Dictionary<UInt64, Dictionary<string, object>> ui_avatarList = null;
+	private Dictionary<UInt64, AVATAR_INFOS> ui_avatarList = null;
 	
 	private string stringAvatarName = "";
 	private bool startCreateAvatar = false;
 
 	private UInt64 selAvatarDBID = 0;
 	public bool showReliveGUI = false;
+	
+	bool startRelogin = false;
 	
 	void Awake() 
 	 {
@@ -34,15 +37,15 @@ public class UI : MonoBehaviour
 	void Start () 
 	{
 		installEvents();
-		Application.LoadLevel("login");
+		SceneManager.LoadScene("login");
 	}
 
 	void installEvents()
 	{
 		// common
 		KBEngine.Event.registerOut("onKicked", this, "onKicked");
-		KBEngine.Event.registerOut("onDisableConnect", this, "onDisableConnect");
-		KBEngine.Event.registerOut("onConnectStatus", this, "onConnectStatus");
+		KBEngine.Event.registerOut("onDisconnected", this, "onDisconnected");
+		KBEngine.Event.registerOut("onConnectionState", this, "onConnectionState");
 		
 		// login
 		KBEngine.Event.registerOut("onCreateAccountResult", this, "onCreateAccountResult");
@@ -51,12 +54,14 @@ public class UI : MonoBehaviour
 		KBEngine.Event.registerOut("onScriptVersionNotMatch", this, "onScriptVersionNotMatch");
 		KBEngine.Event.registerOut("onLoginBaseappFailed", this, "onLoginBaseappFailed");
 		KBEngine.Event.registerOut("onLoginSuccessfully", this, "onLoginSuccessfully");
+		KBEngine.Event.registerOut("onReloginBaseappFailed", this, "onReloginBaseappFailed");
+		KBEngine.Event.registerOut("onReloginBaseappSuccessfully", this, "onReloginBaseappSuccessfully");
 		KBEngine.Event.registerOut("onLoginBaseapp", this, "onLoginBaseapp");
 		KBEngine.Event.registerOut("Loginapp_importClientMessages", this, "Loginapp_importClientMessages");
 		KBEngine.Event.registerOut("Baseapp_importClientMessages", this, "Baseapp_importClientMessages");
 		KBEngine.Event.registerOut("Baseapp_importClientEntityDef", this, "Baseapp_importClientEntityDef");
 		
-		// select-avatars
+		// select-avatars(register by scripts)
 		KBEngine.Event.registerOut("onReqAvatarList", this, "onReqAvatarList");
 		KBEngine.Event.registerOut("onCreateAvatarResult", this, "onCreateAvatarResult");
 		KBEngine.Event.registerOut("onRemoveAvatar", this, "onRemoveAvatar");
@@ -91,8 +96,8 @@ public class UI : MonoBehaviour
 				
 				if(ui_avatarList != null && ui_avatarList.Count > 0)
 				{
-					Dictionary<string, object> avatarinfo = ui_avatarList[selAvatarDBID];
-					KBEngine.Event.fireIn("reqRemoveAvatar", (string)avatarinfo["name"]);
+					AVATAR_INFOS avatarinfo = ui_avatarList[selAvatarDBID];
+					KBEngine.Event.fireIn("reqRemoveAvatar", avatarinfo.name);
 				}
 			}
         }
@@ -113,7 +118,7 @@ public class UI : MonoBehaviour
         		info("Please wait...(请稍后...)");
         		
 				KBEngine.Event.fireIn("selectAvatarGame", selAvatarDBID);
-				Application.LoadLevel("world");
+				SceneManager.LoadScene("world");
 				ui_state = 2;
 			}
         }
@@ -141,24 +146,20 @@ public class UI : MonoBehaviour
 			int idx = 0;
 			foreach(UInt64 dbid in ui_avatarList.Keys)
 			{
-				Dictionary<string, object> info = ui_avatarList[dbid];
-			//	Byte roleType = (Byte)info["roleType"];
-				string name = (string)info["name"];
-			//	UInt16 level = (UInt16)info["level"];
-				UInt64 idbid = (UInt64)info["dbid"];
+				AVATAR_INFOS info = ui_avatarList[dbid];
 
 				idx++;
 				
 				Color color = GUI.contentColor;
-				if(selAvatarDBID == idbid)
+				if(selAvatarDBID == info.dbid)
 				{
 					GUI.contentColor = Color.red;
 				}
 				
-				if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 120 - 35 * idx, 200, 30), name))    
+				if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 120 - 35 * idx, 200, 30), info.name))    
 				{
-					Debug.Log("selAvatar:" + name);
-					selAvatarDBID = idbid;
+					Debug.Log("selAvatar:" + info.name);
+					selAvatarDBID = info.dbid;
 				}
 				
 				GUI.contentColor = color;
@@ -170,7 +171,7 @@ public class UI : MonoBehaviour
 			{
 				KBEngine.Account account = (KBEngine.Account)KBEngineApp.app.player();
 				if(account != null)
-					ui_avatarList = new Dictionary<ulong, Dictionary<string, object>>(account.avatars);
+					ui_avatarList = new Dictionary<UInt64, AVATAR_INFOS>(account.avatars);
 			}
 		}
 	}
@@ -224,7 +225,7 @@ public class UI : MonoBehaviour
 		UnityEngine.GameObject obj = UnityEngine.GameObject.Find("player(Clone)");
 		if(obj != null)
 		{
-			GUI.Label(new Rect((Screen.width / 2) - 100, 20, 400, 100), "position=" + obj.transform.position.ToString()); 
+			GUI.Label(new Rect((Screen.width / 2) - 100, 20, 400, 100), "id=" + KBEngineApp.app.entity_id + ", position=" + obj.transform.position.ToString()); 
 		}
 	}
 
@@ -308,7 +309,7 @@ public class UI : MonoBehaviour
 		}
 	}
 	
-	public void onConnectStatus(bool success)
+	public void onConnectionState(bool success)
 	{
 		if(!success)
 			err("connect(" + KBEngineApp.app.getInitArgs().ip + ":" + KBEngineApp.app.getInitArgs().port + ") is error! (连接错误)");
@@ -348,18 +349,30 @@ public class UI : MonoBehaviour
 		info("connect to loginBaseapp, please wait...(连接到网关， 请稍后...)");
 	}
 
+	public void onReloginBaseappFailed(UInt16 failedcode)
+	{
+		err("relogin is failed(重连网关失败), err=" + KBEngineApp.app.serverErr(failedcode));
+		startRelogin = false;
+	}
+	
+	public void onReloginBaseappSuccessfully()
+	{
+		info("relogin is successfully!(重连成功!)");
+		startRelogin = false;
+	}
+	
 	public void onLoginSuccessfully(UInt64 rndUUID, Int32 eid, Account accountEntity)
 	{
 		info("login is successfully!(登陆成功!)");
 		ui_state = 1;
 
-		Application.LoadLevel("selavatars");
+		SceneManager.LoadScene("selavatars");
 	}
 
 	public void onKicked(UInt16 failedcode)
 	{
 		err("kick, disconnect!, reason=" + KBEngineApp.app.serverErr(failedcode));
-		Application.LoadLevel("login");
+		SceneManager.LoadScene("login");
 		ui_state = 0;
 	}
 
@@ -378,12 +391,12 @@ public class UI : MonoBehaviour
 		info("importClientEntityDef ...");
 	}
 	
-	public void onReqAvatarList(Dictionary<UInt64, Dictionary<string, object>> avatarList)
+	public void onReqAvatarList(Dictionary<UInt64, AVATAR_INFOS> avatarList)
 	{
 		ui_avatarList = avatarList;
 	}
 	
-	public void onCreateAvatarResult(Byte retcode, object info, Dictionary<UInt64, Dictionary<string, object>> avatarList)
+	public void onCreateAvatarResult(UInt64 retcode, AVATAR_INFOS info, Dictionary<UInt64, AVATAR_INFOS> avatarList)
 	{
 		if(retcode != 0)
 		{
@@ -394,7 +407,7 @@ public class UI : MonoBehaviour
 		onReqAvatarList(avatarList);
 	}
 	
-	public void onRemoveAvatar(UInt64 dbid, Dictionary<UInt64, Dictionary<string, object>> avatarList)
+	public void onRemoveAvatar(UInt64 dbid, Dictionary<UInt64, AVATAR_INFOS> avatarList)
 	{
 		if(dbid == 0)
 		{
@@ -405,7 +418,24 @@ public class UI : MonoBehaviour
 		onReqAvatarList(avatarList);
 	}
 	
-	public void onDisableConnect()
+	public void onDisconnected()
 	{
+		err("disconnect! will try to reconnect...(你已掉线，尝试重连中!)");
+		startRelogin = true;
+		Invoke("onReloginBaseappTimer", 1.0f);
+	}
+	
+	public void onReloginBaseappTimer() 
+	{
+		if(ui_state == 0)
+		{
+			err("disconnect! (你已掉线!)");
+			return;
+		}
+	
+		KBEngineApp.app.reloginBaseapp();
+		
+		if(startRelogin)
+			Invoke("onReloginBaseappTimer", 3.0f);
 	}
 }

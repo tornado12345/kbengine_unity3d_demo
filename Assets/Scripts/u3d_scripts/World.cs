@@ -30,13 +30,15 @@ public class World : MonoBehaviour
 	{
 		// in world
 		KBEngine.Event.registerOut("addSpaceGeometryMapping", this, "addSpaceGeometryMapping");
-		KBEngine.Event.registerOut("onAvatarEnterWorld", this, "onAvatarEnterWorld");
 		KBEngine.Event.registerOut("onEnterWorld", this, "onEnterWorld");
 		KBEngine.Event.registerOut("onLeaveWorld", this, "onLeaveWorld");
 		KBEngine.Event.registerOut("set_position", this, "set_position");
 		KBEngine.Event.registerOut("set_direction", this, "set_direction");
 		KBEngine.Event.registerOut("updatePosition", this, "updatePosition");
 		KBEngine.Event.registerOut("onControlled", this, "onControlled");
+		
+		// in world(register by scripts)
+		KBEngine.Event.registerOut("onAvatarEnterWorld", this, "onAvatarEnterWorld");
 		KBEngine.Event.registerOut("set_HP", this, "set_HP");
 		KBEngine.Event.registerOut("set_MP", this, "set_MP");
 		KBEngine.Event.registerOut("set_HP_Max", this, "set_HP_Max");
@@ -118,8 +120,12 @@ public class World : MonoBehaviour
 	public void createPlayer()
 	{
 		if (player != null)
+		{
+			if(terrain != null)
+				player.GetComponent<GameEntity>().entityEnable();
 			return;
-
+		}
+		
 		if (KBEngineApp.app.entity_type != "Avatar") {
 			return;
 		}
@@ -182,8 +188,10 @@ public class World : MonoBehaviour
 		if(entity.renderObj == null)
 			return;
 
-		((UnityEngine.GameObject)entity.renderObj).GetComponent<GameEntity>().destPosition = entity.position;
-		((UnityEngine.GameObject)entity.renderObj).GetComponent<GameEntity>().position = entity.position;
+		GameEntity gameEntity = ((UnityEngine.GameObject)entity.renderObj).GetComponent<GameEntity>();
+		gameEntity.destPosition = entity.position;
+		gameEntity.position = entity.position;
+		gameEntity.spaceID = KBEngineApp.app.spaceID;
 	}
 
 	public void updatePosition(KBEngine.Entity entity)
@@ -194,6 +202,7 @@ public class World : MonoBehaviour
 		GameEntity gameEntity = ((UnityEngine.GameObject)entity.renderObj).GetComponent<GameEntity>();
 		gameEntity.destPosition = entity.position;
 		gameEntity.isOnGround = entity.isOnGround;
+		gameEntity.spaceID = KBEngineApp.app.spaceID;
 	}
 	
 	public void onControlled(KBEngine.Entity entity, bool isControlled)
@@ -210,58 +219,59 @@ public class World : MonoBehaviour
 		if(entity.renderObj == null)
 			return;
 		
-		((UnityEngine.GameObject)entity.renderObj).GetComponent<GameEntity>().destDirection = 
-			new Vector3(entity.direction.y, entity.direction.z, entity.direction.x); 
+		GameEntity gameEntity = ((UnityEngine.GameObject)entity.renderObj).GetComponent<GameEntity>();
+		gameEntity.destDirection = new Vector3(entity.direction.y, entity.direction.z, entity.direction.x); 
+		gameEntity.spaceID = KBEngineApp.app.spaceID;
 	}
 
-	public void set_HP(KBEngine.Entity entity, object v)
+	public void set_HP(KBEngine.Entity entity, Int32 v, Int32 HP_Max)
 	{
 		if(entity.renderObj != null)
 		{
-			((UnityEngine.GameObject)entity.renderObj).GetComponent<GameEntity>().hp = "" + (Int32)v + "/" + (Int32)entity.getDefinedProperty("HP_Max");
+			((UnityEngine.GameObject)entity.renderObj).GetComponent<GameEntity>().hp = "" + v + "/" + HP_Max;
 		}
 	}
 	
-	public void set_MP(KBEngine.Entity entity, object v)
+	public void set_MP(KBEngine.Entity entity, Int32 v, Int32 MP_Max)
 	{
 	}
 	
-	public void set_HP_Max(KBEngine.Entity entity, object v)
+	public void set_HP_Max(KBEngine.Entity entity, Int32 v, Int32 HP)
 	{
 		if(entity.renderObj != null)
 		{
-			((UnityEngine.GameObject)entity.renderObj).GetComponent<GameEntity>().hp = (Int32)entity.getDefinedProperty("HP") + "/" + (Int32)v;
+			((UnityEngine.GameObject)entity.renderObj).GetComponent<GameEntity>().hp = HP + "/" + v;
 		}
 	}
 	
-	public void set_MP_Max(KBEngine.Entity entity, object v)
+	public void set_MP_Max(KBEngine.Entity entity, Int32 v, Int32 MP)
 	{
 	}
 	
-	public void set_level(KBEngine.Entity entity, object v)
+	public void set_level(KBEngine.Entity entity, UInt16 v)
 	{
 	}
 	
-	public void set_entityName(KBEngine.Entity entity, object v)
+	public void set_entityName(KBEngine.Entity entity, string v)
 	{
 		if(entity.renderObj != null)
 		{
-			((UnityEngine.GameObject)entity.renderObj).GetComponent<GameEntity>().entity_name = (string)v;
+			((UnityEngine.GameObject)entity.renderObj).GetComponent<GameEntity>().entity_name = v;
 		}
 	}
 	
-	public void set_state(KBEngine.Entity entity, object v)
+	public void set_state(KBEngine.Entity entity, SByte v)
 	{
 		if(entity.renderObj != null)
 		{
-			((UnityEngine.GameObject)entity.renderObj).GetComponent<GameEntity>().set_state((SByte)v);
+			((UnityEngine.GameObject)entity.renderObj).GetComponent<GameEntity>().set_state(v);
 		}
 		
 		if(entity.isPlayer())
 		{
 			Debug.Log("player->set_state: " + v);
 			
-			if(((SByte)v) == 1)
+			if(v == 1)
 				UI.inst.showReliveGUI = true;
 			else
 				UI.inst.showReliveGUI = false;
@@ -270,7 +280,7 @@ public class World : MonoBehaviour
 		}
 	}
 
-	public void set_moveSpeed(KBEngine.Entity entity, object v)
+	public void set_moveSpeed(KBEngine.Entity entity, Byte v)
 	{
 		float fspeed = ((float)(Byte)v) / 10f;
 		
@@ -280,11 +290,11 @@ public class World : MonoBehaviour
 		}
 	}
 	
-	public void set_modelScale(KBEngine.Entity entity, object v)
+	public void set_modelScale(KBEngine.Entity entity, Byte v)
 	{
 	}
 	
-	public void set_modelID(KBEngine.Entity entity, object v)
+	public void set_modelID(KBEngine.Entity entity, UInt32 v)
 	{
 	}
 	
