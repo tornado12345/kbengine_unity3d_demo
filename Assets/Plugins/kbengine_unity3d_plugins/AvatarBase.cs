@@ -72,6 +72,7 @@ namespace KBEngine
 				{
 					component1 = (TestBase)Activator.CreateInstance(entityComponentScript);
 					component1.owner = this;
+					component1.entityComponentPropertyID = 16;
 				}
 			}
 
@@ -85,6 +86,7 @@ namespace KBEngine
 				{
 					component2 = (TestBase)Activator.CreateInstance(entityComponentScript);
 					component2.owner = this;
+					component2.entityComponentPropertyID = 21;
 				}
 			}
 
@@ -98,12 +100,27 @@ namespace KBEngine
 				{
 					component3 = (TestNoBaseBase)Activator.CreateInstance(entityComponentScript);
 					component3.owner = this;
+					component3.entityComponentPropertyID = 22;
 				}
 			}
 
 			if(component3 == null)
 				throw new Exception("Please inherit and implement, such as: \"class TestNoBase : TestNoBaseBase\"");
 
+		}
+
+		public override void onComponentsEnterworld()
+		{
+			component1.onEnterworld();
+			component2.onEnterworld();
+			component3.onEnterworld();
+		}
+
+		public override void onComponentsLeaveworld()
+		{
+			component1.onLeaveworld();
+			component2.onLeaveworld();
+			component3.onLeaveworld();
 		}
 
 		public override void onGetBase()
@@ -131,6 +148,20 @@ namespace KBEngine
 			return cellEntityCall;
 		}
 
+		public override void attachComponents()
+		{
+			component1.onAttached(this);
+			component2.onAttached(this);
+			component3.onAttached(this);
+		}
+
+		public override void detachComponents()
+		{
+			component1.onDetached(this);
+			component2.onDetached(this);
+			component3.onDetached(this);
+		}
+
 		public override void onRemoteMethodCall(MemoryStream stream)
 		{
 			ScriptModule sm = EntityDef.moduledefs["Avatar"];
@@ -138,14 +169,21 @@ namespace KBEngine
 			UInt16 methodUtype = 0;
 			UInt16 componentPropertyUType = 0;
 
-			if(sm.useMethodDescrAlias)
+			if(sm.usePropertyDescrAlias)
 			{
 				componentPropertyUType = stream.readUint8();
-				methodUtype = stream.readUint8();
 			}
 			else
 			{
 				componentPropertyUType = stream.readUint16();
+			}
+
+			if(sm.useMethodDescrAlias)
+			{
+				methodUtype = stream.readUint8();
+			}
+			else
+			{
 				methodUtype = stream.readUint16();
 			}
 

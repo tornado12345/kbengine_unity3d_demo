@@ -185,7 +185,10 @@ public class UI : MonoBehaviour
         	
 			if(stringAccount.Length > 0 && stringPasswd.Length > 5)
 			{
-				login();
+                PlayerPrefs.SetString("AccountName", stringAccount);
+                PlayerPrefs.SetString("AccountPasswd", stringPasswd);
+
+                login();
 			}
 			else
 			{
@@ -200,17 +203,26 @@ public class UI : MonoBehaviour
 
 			if(stringAccount.Length > 0 && stringPasswd.Length > 5)
 			{
-				createAccount();
+                PlayerPrefs.SetString("AccountName", stringAccount);
+                PlayerPrefs.SetString("AccountPasswd", stringPasswd);
+
+                createAccount();
 			}
 			else
 			{
 				err("account or password is error, length < 6!(账号或者密码错误，长度必须大于5!)");
 			}
         }
-        
-		stringAccount = GUI.TextField(new Rect (Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 30), stringAccount, 20);
+
+        if (stringAccount == "")
+            stringAccount = PlayerPrefs.GetString("AccountName", "");
+
+        if (stringPasswd == "")
+            stringPasswd = PlayerPrefs.GetString("AccountPasswd", "");
+
+        stringAccount = GUI.TextField(new Rect (Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 30), stringAccount, 20);
 		stringPasswd = GUI.PasswordField(new Rect (Screen.width / 2 - 100, Screen.height / 2 - 10, 200, 30), stringPasswd, '*');
-	}
+    }
 
 	void onWorldUI()
 	{
@@ -249,7 +261,9 @@ public class UI : MonoBehaviour
 		{
 			labelColor = Color.red;
 			labelMsg = "version not match(curr=" + KBEngineApp.app.clientVersion + ", srv=" + KBEngineApp.app.serverVersion + " )(版本不匹配)";
-		}
+            labelMsg += "\nExecute the gensdk script to generate matching client SDK in the server-assets directory.";
+            labelMsg += "\n(在服务端的资产目录下执行gensdk脚本生成匹配的客户端SDK)";
+        }
 		else if(KBEngineApp.app != null && KBEngineApp.app.serverScriptVersion != "" 
 			&& KBEngineApp.app.serverScriptVersion != KBEngineApp.app.clientScriptVersion)
 		{
