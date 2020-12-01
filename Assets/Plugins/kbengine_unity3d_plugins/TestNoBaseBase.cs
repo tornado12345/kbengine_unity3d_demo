@@ -28,8 +28,23 @@ namespace KBEngine
 		public override void createFromStream(MemoryStream stream)
 		{
 			base.createFromStream(stream);
+		}
+
+		public override void onGetBase()
+		{
+			ownerID = owner.id;
 			baseEntityCall = new EntityBaseEntityCall_TestNoBaseBase(entityComponentPropertyID, ownerID);
+		}
+
+		public override void onGetCell()
+		{
+			ownerID = owner.id;
 			cellEntityCall = new EntityCellEntityCall_TestNoBaseBase(entityComponentPropertyID, ownerID);
+		}
+
+		public override void onLoseCell()
+		{
+			cellEntityCall = null;
 		}
 
 		public override ScriptModule getScriptModule()
